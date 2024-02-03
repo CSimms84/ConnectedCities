@@ -10,20 +10,28 @@
  * DATE: 3/31/2022
  */
 
-import java.util.ArrayList;
-
-public class ConnectedCities {
-
-    public static void main(String[] args) {
-        if (args.length == 3) {
-            CitySearch search = new CitySearch();
-            ArrayList cities = search.readCities(args[2]);
-            if (search.isConnected(args[0], args[1], cities)) {
-                System.out.println("CONNECTED");
-            } else {
-                System.out.println("NOT CONNECTED");
-            }
-        }
-    }
-
-}
+ import java.io.*;
+ import java.nio.file.*;
+ 
+ public class ConnectedCities {
+     public static void main(String[] args) throws IOException {
+         if (args.length != 3) {
+             System.out.println("Usage: java ConnectedCities <city1> <city2> <file path>");
+             return;
+         }
+ 
+         String city1 = args[0];
+         String city2 = args[1];
+         Path filePath = Paths.get(args[2]);
+ 
+         CityGraph cityGraph = new CityGraph();
+         Files.lines(filePath)
+              .forEach(line -> {
+                  String[] cities = line.split(",\\s*");
+                  cityGraph.addConnection(cities[0], cities[1]);
+              });
+ 
+         System.out.println(cityGraph.isConnected(city1, city2) ? "CONNECTED" : "NOT CONNECTED");
+     }
+ }
+ 
