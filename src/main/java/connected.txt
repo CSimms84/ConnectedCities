@@ -1,0 +1,8 @@
+New York, Chicago
+Denver, Kansas City
+Chicago, Los Angeles
+Kansas City, Nashville
+San Francisco, Los Angeles
+Detroit, Palo Alto
+Baltimore, New York
+Chicago, Baltimore
